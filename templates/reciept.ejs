@@ -1,0 +1,48 @@
+<style>
+    .container {
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-top: 10px;
+    }
+
+    hr {
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
+    .right {
+        text-align: right;
+        padding: 5px;
+    }
+
+    .left {
+        text-align: left;
+        padding: 5px;
+    }
+</style>
+<div class="container">
+    <center>
+        <h3>Sapthagiri Enclave Flat Owners Association</h3>
+    </center>
+    <hr>
+    <table width="100%">
+        <tr>
+            <td><b>Reciept Id:</b>&nbsp;<%= _id %></td>
+            <td class="right"><b>Date:</b>&nbsp;<%= Date.toDateString() %></td>
+        </tr>
+    </table>
+    <br>
+    <p>Recieved with Thanks from [ <%= flatNo %> ] <%= owner %></p>
+    <p>Sum of <%= reciept.totalinWords %> rupees only</p>
+    <p>By <%= reciept.paymentType %> <%= reciept.particulars %></p>
+
+    <br>
+    <br>
+    <hr>
+    <table width="100%">
+        <tr>
+            <th>Rs. <%= reciept.total %></th>
+        </tr>
+    </table>
+    <hr>
+</div>

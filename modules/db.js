@@ -20,11 +20,16 @@ Database.prototype.connect = async function(){
     }
 }
 
-Database.prototype.getAllResidents = async function (){
+Database.prototype.getAllResidents = async function (options){
     var self = this;
     self.connect();
     try{
-        results = await residentModel.find({});
+        if(options){
+            results = await residentModel.find(options);
+        }
+        else{
+            results = await residentModel.find({});
+        }
     }
     catch(err){
         console.log(err);
@@ -33,11 +38,17 @@ Database.prototype.getAllResidents = async function (){
     return results;
 }
 
-Database.prototype.getAllTransactions = async function(){
+Database.prototype.getAllTransactions = async function(options){
     var self = this;
     self.connect();
     try{
-        results = await transactionModel.find({});
+        if(options){
+            results = await transactionModel.find(options);
+        }
+        else{
+            results = await transactionModel.find({});
+        }
+        
     }
     catch(err){
         console.log(err);
@@ -112,11 +123,11 @@ Database.prototype.newTransaction = async function(options){
     return 0;
 }
 
-Database.prototype.updateResident = async function(id,options){
+Database.prototype.updateResident = async function(query,options){
     var self = this;
     self.connect();
     try{
-        await residentModel.update({_id:id},{$set:options});
+        await residentModel.update(query,{$set:options});
     }
     catch(err){
         console.log(err);
@@ -125,11 +136,11 @@ Database.prototype.updateResident = async function(id,options){
     return 0;
 }
 
-Database.prototype.updateTransaction = async function(tid,options){
+Database.prototype.updateTransaction = async function(query,options){
     var self = this;
     self.connect();
     try{
-        await transactionModel.update({_id:tid},{$set:options});
+        await transactionModel.update(query,{$set:options});
     }catch(err){
         console.log(err);
         return -1;
@@ -154,6 +165,30 @@ Database.prototype.deleteTransaction = async function(id){
     self.connect();
     try{
         await transactionModel.deleteOne({_id:id});
+    }catch(err){
+        console.log(err);
+        return -1;
+    }
+    return 0;
+}
+
+Database.prototype.deleteTransactions = async function(options){
+    var self = this;
+    self.connect();
+    try{
+        await transactionModel.deleteMany(options);
+    }catch(err){
+        console.log(err);
+        return -1;
+    }
+    return 0;
+}
+
+Database.prototype.deleteResidents = async function(options){
+    var self = this;
+    self.connect();
+    try{
+        await residentModel.deleteMany(options);
     }catch(err){
         console.log(err);
         return -1;

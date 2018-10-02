@@ -1,0 +1,91 @@
+<style>
+    .container {
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-top:10px;
+    }
+
+    hr {
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
+    .right {
+        text-align: right;
+        padding: 5px;
+    }
+
+    .left {
+        text-align: left;
+        padding: 5px;
+    }
+</style>
+<div class="container">
+    <center>
+        <h3>Sapthagiri Enclave Flat Owners Association</h3>
+    </center>
+    <hr>
+    <table width="100%">
+        <tr>
+            <td class="left"><strong>Name:</strong>&nbsp;[<%=flatNo %>]&nbsp;<%=owner %>
+            </td>
+            <td class="right"><strong>Bill Id:</strong>&nbsp;<%=_id %>
+            </td>
+        </tr>
+        <tr>
+            <td class="left"><strong>Particulars: </strong>&nbsp;<%=bill.particulars%>
+            </td>
+            <td class="right"><strong>Date: </strong>&nbsp;<%= Date.toDateString() %>
+            </td>
+        </tr>
+    </table>
+    <hr>
+    <table width="100%">
+        <tr>
+            <th class="left">Nature of charges</th>
+            <th class="right">Amount</th>
+        </tr>
+        <% Object.keys(bill.details.toObject()).forEach(function(key){ %>
+        <% if(key != '_id'){ %>
+            <tr>
+                <td class="left">
+                    <%= key %>
+                </td>
+                <td class="right">
+                    Rs.&nbsp;<%= bill.details.toObject()[key]%>
+                </td>
+            </tr>
+        
+        <% }}); %>
+    </table>
+    <hr>
+    <table width="100%">
+        <tr>
+            <th class="left">Arrears:</th>
+            <td class="right">
+                Rs.&nbsp;<%=bill.arrears%>
+            </td>
+        </tr>
+        <tr>
+            <th class="left">Total:</th>
+            <td class="right">
+                Rs.&nbsp;<%=bill.total%>
+            </td>
+        </tr>
+        <tr>
+            <th class="left">Total in words:</th>
+            <td class="right">
+                <%= bill.totalinWords %> rupees only
+            </td>
+        </tr>
+    </table>
+    <hr>
+    <% if(bill.notes){ %>
+    <table width="100%">
+    <tr><th>Notes:</th></tr>
+    <tr><td></td></tr>
+    </table>
+    <% } %>
+    
+
+</div>
