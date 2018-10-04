@@ -196,4 +196,49 @@ Database.prototype.deleteResidents = async function(options){
     return 0;
 }
 
+Database.prototype.getUser = async function(options){
+    var self = this;
+    self.connect();
+    try{
+        if(options._id && !mongoose.Types.ObjectId.isValid(options._id)){
+            results = null;
+        }
+        else{
+            results = await userModel.findOne(options);
+        }
+    }
+    catch(err){
+        console.log(err);
+        return -1;
+    }
+    return results;
+}
+
+Database.prototype.newUser = async function(options){
+    var self = this;
+    self.connect();
+    try{
+        let user = new userModel(options);
+        await user.save();
+    }
+    catch(err){
+        console.log(err);
+        return -1;
+    }
+    return 0;
+}
+
+Database.prototype.deleteUser = async function(options){
+    var self = this;
+    self.connect();
+    try{
+        await userModel.deleteOne(options);
+    }
+    catch(err){
+        console.log(err);
+        return -1;
+    }
+    return 0;
+}
+
 module.exports = Database;
