@@ -37,8 +37,33 @@ app.config(function($routeProvider) {
                 return $auth.validateUser();
             }]
         }
-    }).otherwise({
-        redirectTo: '/'
+    })
+    .when("/generatebill/",{
+        templateUrl: "/public/templates/generatebill.html",
+        resolve:{
+            auth: ['authService', function($auth) {
+                return $auth.validateUser();
+            }]
+        }
+    })
+    .when("/generatereciept/",{
+        templateUrl:"/public/templates/generatereciept.html",
+        resolve:{
+            auth: ['authService', function($auth) {
+                return $auth.validateUser();
+            }]
+        }
+    })
+    .when("/configurations/",{
+        templateUrl: "/public/templates/configurations.html",
+        resolve:{
+            auth: ['authService', function($auth) {
+                return $auth.validateUser();
+            }]
+        }
+    })
+    .otherwise({
+        redirectTo:"/"
     });
 });
 
@@ -74,7 +99,7 @@ app.controller('MainController',['$rootScope','$scope','$location',function(root
         var toastHTML = '<span>Internal Server error occured</span><button class="btn-flat toast-action">OK</button>';
         M.toast({html: toastHTML,displayLength:5000});
     });
-    
+
 }]);
 
 app.controller('loginController',['$rootScope','$scope','$location','authService',function(rootScope,scope,$location,authService){
@@ -90,6 +115,7 @@ app.controller('loginController',['$rootScope','$scope','$location','authService
 }]);
 
 
-app.controller('homeController',['$scope','$rootScope','$location','resourceFactory',function(){
+app.controller('homeController',['$scope','$rootScope','$location','resourceFactory',function(scope,rootScope,location,resourceFactory){
     rootScope.user = sessionStorage.user;
+
 }]);

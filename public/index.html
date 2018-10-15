@@ -8,28 +8,41 @@
     <title>Sapthagiri</title>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz"
         crossorigin="anonymous">
+         <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="./public/css/styles.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.0-rc.2/angular.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.0-rc.2/angular-route.min.js"></script>
     <script src="./public/js/app.js"></script>
     <script src="./public/js/services.js"></script>
-    <!-- Compiled and minified CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <link rel="stylesheet" href="./public/css/styles.css">
+   
+   
+
 </head>
 
 <body ng-controller="MainController">
+
+        <ul id="dropdown1" class="dropdown-content">
+                <li><a href="#!">one</a></li>
+                <li><a href="#!">two</a></li>
+                <li class="divider"></li>
+                <li><a href="#!">three</a></li>
+        </ul>
+
     <nav class="blue top-nav">
         <div class="nav-wrapper">
             <a href="" data-target="slide-out" class="sidenav-trigger left" ng-if="loggedIn" style="color:white"><i class="material-icons">menu</i></a>
             <a href="#" class="brand-logo center">Sapthagiri-Admin</a>
             <ul class="right" ng-if="loggedIn">
-                <li><a class="dropdown-trigger" data-target="dropdown1"><i class="material-icons left">account_circle</i>{{user}}<i
+                <li><a class='dropdown-trigger' data-target='dropdown1'><i class="material-icons left">account_circle</i>{{user}}<i
                             class="material-icons right">arrow_drop_down</i></a></li>
             </ul>
         </div>
     </nav>
-    <div class="load-holder" ng-show="blockUI">
+        <div class="load-holder" ng-show="blockUI">
         <img class="loader-icon" src="./public/images/loader.svg" alt="Loading..">
     </div>
     <ul id="slide-out" class="sidenav side-nav sidenav-fixed" ng-if="loggedIn">
@@ -40,26 +53,33 @@
                 </div>
             </div>
         </li>
-        <li><a href="#!"><i class="material-icons">cloud</i>First Link With Icon</a></li>
-        <li><a href="#!">Second Link</a></li>
-        <li>
-            <div class="divider"></div>
-        </li>
-        <li><a class="subheader">Subheader</a></li>
-        <li><a class="waves-effect" href="#!">Third Link With Waves</a></li>
+        <li><a href="#!"><i class="material-icons">equalizer</i>Dashboard</a></li>
+        <li><div class="divider"></div></li>
+        <li><a href="#!/viewresidents"><i class="material-icons">person</i>Residents</a></li>
+        <li><div class="divider"></div></li>
+        <li><a href="#!/createbill"><i class="material-icons">attach_money</i>Generate Bill</a></li>
+        <li><div class="divider"></div></li>
+        <li><a href="#!/createreciept"><i class="material-icons">description</i>Generate Reciepts</a></li>
+        <li><div class="divider"></div></li>
+        <li><a href="#!/configurations"><i class="material-icons">settings</i>Configurations</a></li>
+
+        
+        
     </ul>
     
     <div ng-view></div>
 
-
+    
+    
+  
+ 
     <!-- Scripts -->
-
-    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script>
-        M.autoInit();
+        M.AutoInit();
     </script>
-
+    
+    
+    
 </body>
 
 </html>
