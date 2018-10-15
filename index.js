@@ -47,7 +47,8 @@ app.post('/api/login',function(req,res){
                 let token = jwt.sign({userId:data._id,username:data.username},secretKey,{expiresIn:"1h"});
                 return res.status(200).json({
                     message:"Authentication successful",
-                    token: token
+                    token: token,
+                    username:data.username
                 });
             }
             

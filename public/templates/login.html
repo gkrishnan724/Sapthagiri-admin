@@ -1,0 +1,40 @@
+<br>
+<br>
+<br>
+<div class="login-container login-card" style="margin:0 auto">
+    <div class="row">
+        <div class="card col s6 offset-s3">
+            <div class="card-content">
+                <span class="card-title"><strong>Login:</strong></span>
+                <hr>
+                <form class="col s12" ng-submit="login()" name="loginForm">
+                    
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <i class="material-icons prefix">account_circle</i>
+                            <input id="icon_prefix" type="text" class="validate" name="username"  ng-model="username" required>
+                            <label for="icon_prefix">Username</label>
+                            
+                        </div>
+                        <span class="red-text" ng-show="loginForm.username.$touched && loginForm.username.$invalid">Required</span>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <i class="material-icons prefix">vpn_key</i>
+                            <input id="icon_telephone" type="password" class="validate" name="password" ng-model="password" required>
+                            <label for="icon_telephone">Password</label>
+                            
+                        </div>
+                        <span class="red-text" ng-show="loginForm.password.$touched && loginForm.password.$invalid">Required</span>
+                    </div>
+                    <div class="row">
+                        <button class="btn waves-effect waves-light right" type="submit" name="action">Login
+                            <i class="material-icons right" ng-hide="logging">send</i>
+                            <i class="fa fa-circle-notch fa-spin" ng-show="logging" style="font-size:16px"></i>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
