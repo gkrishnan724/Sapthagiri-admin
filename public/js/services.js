@@ -25,40 +25,71 @@ app.service('authService',['$rootScope','$http','$q','$location',function(scope,
             }
         });
     }
+
+    this.logOut = function(){
+        if(sessionStorage.accessToken){
+            sessionStorage.removeItem('accessToken');
+        }
+        if(sessionStorage.user){
+            sessionStorage.removeItem('user')
+        }
+    }
 }]);
 
 
 app.service('resourceFactory',['$rootScope','$http',function(scope,$http){
-    
+    let accessToken = '';
+    let headers = {};
+    if(sessionStorage.accessToken){
+        accessToken = sessionStorage.accessToken;
+        headers.Authorization = 'Bearer ' + accessToken; 
+    }
 
     this.getResident = function(residentId){
-        return $http.get('/api/viewresident/'+residentId)
+        scope.blockUI = true;
+        return $http({
+            method:'get',
+            url: '/api/viewresident/'+residentId,
+            headers:headers
+        });
     }
 
     this.getTransaction = function(transactionId){
-        return $http.get('/api/viewtransaction'+transactionId)
+        scope.blockUI = true;
+        return $http({
+            method:'get',
+            url: '/api/viewtransaction/'+transactionId,
+            headers:headers
+        });
     }
 
     this.getAllResidents = function(){
-        return $http.get('/api/getallresidents');
+        scope.blockUI = true;
+        return $http({
+            method:'get',
+            url: '/api/getallresidents',
+            headers:headers
+        });
     }
     
     this.getAllTransactions = function(){
-        return $http.get('/api/getalltransactions');
+        scope.blockUI = true;
+        return $http({
+            method:'get',
+            url: '/api/getalltransactions',
+            headers:headers
+        });
     }
 
     this.newTransaction = function(){
-
+        scope.blockUI = true;
     }
 
     this.newResident = function(){
-
+        scope.blockUI = true;
     }
 
     this.getTransactionCopy = function(){
-
+        scope.blockUI = true;
     }
-
-    
-
 }]);

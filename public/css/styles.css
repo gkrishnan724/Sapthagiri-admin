@@ -32,3 +32,20 @@ hr {
     padding-left:175px !important;
 }
 
+i.material-icons {
+    vertical-align: bottom;
+}
+
+.clickable{
+    cursor:pointer;
+}
+
+.bottom{
+    top:20px;
+}
+
+li.active{
+    background:#2196f3 !important;
+}
+
+

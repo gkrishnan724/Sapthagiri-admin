@@ -1,0 +1,77 @@
+<br>
+<div class="container">
+    <div class="card">
+        <div class="card-content">
+            <div class="row">
+                <div class="col s6">
+                    <span class="" style="font-size:32px"><i class="material-icons medium">home</i>&nbsp;&nbsp;{{resident.flatNo}}</span>
+                </div>
+                <div class="right">
+                    <button class="btn waves-effect waves-light blue right bottom">
+                        <i class="material-icons">mode_edit</i>&nbsp;Edit
+                    </button>
+                </div>
+            </div>
+            <hr>
+            <br>
+            <div class="row">
+                <div class="col s6">
+                    <span style="font-size:16px"><i class="material-icons">person</i>&nbsp;&nbsp;{{resident.owner}}</span>
+                </div>
+                <div class="right">
+                    <span style="font-size:16px" ng-if="resident.associate"><i class="material-icons">supervisor_account</i>&nbsp;&nbsp;{{resident.associate}}</span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s6">
+                    <span style="font-size:16px"><i class="material-icons">email</i>&nbsp;{{emails}}</span>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col s6">
+                    <span style="font-size:16px"><i class="material-icons">local_phone</i>&nbsp;{{phones}}</span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s6">
+                    <span style="font-size:16px"><strong>Dues&nbsp;</strong><i class="material-icons">import_export</i>&nbsp;Rs.
+                        {{resident.currentDues}}</span>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col s6">
+                    <span style="font-size:20px"><strong>Transaction History <i class="material-icons">timeline</i></strong></span>
+                </div>
+            </div>
+            <div class="row" ng-hide="scope.isTransaction">
+                <center>There are no transactions related to this flat.</center>
+            </div>
+            <div class="row" ng-show="scope.isTransaction">
+                <div class="col s12">
+                    <table class="centered highlight">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Date</th>
+                                <th>Type</th>
+                                <th>Amount</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="clickable" ng-click="goTo(transaction._id)" ng-repeat="transaction in resident.transactions | filter:search">
+                                <td>{{transaction._id}}</td>
+                                <td>{{transaction.Date}}</td>
+                                <td>{{transaction.Type}}</td>
+                                <td>Rs. {{transaction.total}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- Detailed view about  a particular resident -->
